@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giga Innovation - Game Latihan Lomba Kelas 4 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#FF3366',
+                        brandYellow: '#FFCC00',
+                        brandBlue: '#3399FF',
+                        brandGreen: '#00CC66',
+                        brandPurple: '#8E44AD'
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #E0F2FE 0%, #FEF3C7 50%, #FCE7F3 100%);
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', cursive;
+        }
+        .btn-bounce {
+            transition: all 0.2s ease;
+        }
+        .btn-bounce:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .btn-bounce:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F5F9;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        .heart-pop {
+            animation: heartBeat 0.6s infinite alternate;
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 p-2 md:p-6 flex flex-col justify-between items-center">
+
+    <!-- HEADER / APP CONTAINER -->
+    <div id="app" class="w-full max-w-4xl bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-white overflow-hidden flex flex-col min-h-[90vh]">
+        
+        <!-- TOP NAVIGATION BAR -->
+        <header class="bg-gradient-to-r from-red-500 via-amber-400 to-sky-400 p-4 text-white flex justify-between items-center shadow-md">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showScreen('screen-welcome')">
+                <div class="bg-white p-2 rounded-2xl shadow">
+                    <i class="fa-solid fa-graduation-cap text-red-500 text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide drop-shadow-sm">GIGA INNOVATION</h1>
+                    <p class="text-xs font-semibold text-amber-100">Latihan Lomba Mata Pelajaran Kelas 4 SD • CS: 081329200985</p>
+                </div>
+            </div>
+
+            <!-- USER INFO BADGE (Pre-filled for Adibah Gilda Thasany) -->
+            <div id="top-user-badge" class="flex items-center space-x-2 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/40">
+                <i class="fa-solid fa-user-astronaut text-amber-200"></i>
+                <span id="display-player-name" class="font-bold text-sm">Adibah Gilda Thasany</span>
+            </div>
+        </header>
+
+        <!-- SCREEN 1: WELCOME & REGISTRATION -->
+        <section id="screen-welcome" class="p-6 md:p-10 flex flex-col items-center justify-center flex-1 text-center">
+            <!-- BIRTHDAY SPECIAL BANNER -->
+            <div class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white p-4 rounded-3xl shadow-lg border-2 border-white/60 mb-6 max-w-xl w-full animate-pulse">
+                <div class="flex items-center justify-center space-x-2 text-xl font-bold mb-1">
+                    <span>🎉</span>
+                    <span>Selamat Ulang Tahun Adibah Gilda Thasany!</span>
+                    <span>🎂</span>
+                </div>
+                <p class="text-xs md:text-sm font-medium text-pink-100 leading-relaxed">
+                    Semoga di hari ulang tahunmu ini, perlombaan nanti menjadi <strong>kado yang sangat istimewa</strong> dan Adibah berhasil meraih <strong>JUARA!</strong> Tetap semangat berlatih ya! 🌟🏆✨
+                </p>
+            </div>
+
+            <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center mb-3 shadow-inner border-4 border-amber-300">
+                <i class="fa-solid fa-trophy text-5xl text-amber-500 animate-bounce"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">Selamat Datang Adibah Gilda Thasany!</h2>
+            <p class="text-slate-600 max-w-md mb-8 font-medium">Siapkan dirimu menghadapi Lomba Mata Pelajaran bersama Giga Innovation. Pilih modul materi atau langsung latihan soal!</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-xl">
+                <button onclick="startMode('materi')" class="btn-bounce bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold py-4 px-6 rounded-2xl shadow-lg border-b-4 border-emerald-700 flex flex-col items-center">
+                    <i class="fa-solid fa-book-open text-3xl mb-1"></i>
+                    <span>Pelajari Materi</span>
+                </button>
+                <button onclick="startMode('kuis')" class="btn-bounce bg-sky-500 hover:bg-sky-600 text-white font-extrabold py-4 px-6 rounded-2xl shadow-lg border-b-4 border-sky-700 flex flex-col items-center">
+                    <i class="fa-solid fa-gamepad text-3xl mb-1"></i>
+                    <span>Mulai Kuis Soal</span>
+                </button>
+                <button onclick="startMode('tebak-gambar')" class="btn-bounce bg-purple-500 hover:bg-purple-600 text-white font-extrabold py-4 px-6 rounded-2xl shadow-lg border-b-4 border-purple-700 flex flex-col items-center">
+                    <i class="fa-solid fa-puzzle-piece text-3xl mb-1"></i>
+                    <span>Tebak Gambar</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: MATERI LESSONS -->
+        <section id="screen-materi" class="hidden p-4 md:p-8 flex-1 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <button onclick="showScreen('screen-welcome')" class="text-sky-600 font-bold flex items-center hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Menu
+                </button>
+                <h2 class="text-2xl font-bold text-slate-800">Rangkuman Materi Kelas 4</h2>
+            </div>
+
+            <!-- Subject Tabs -->
+            <div class="flex space-x-2 border-b border-slate-200 mb-4">
+                <button onclick="switchMateriTab('mtk')" id="tab-mtk" class="py-2 px-4 font-bold border-b-4 border-sky-500 text-sky-600">Matematika</button>
+                <button onclick="switchMateriTab('ipa')" id="tab-ipa" class="py-2 px-4 font-bold text-slate-500 border-b-4 border-transparent hover:text-slate-700">Sains (IPA)</button>
+                <button onclick="switchMateriTab('ing')" id="tab-ing" class="py-2 px-4 font-bold text-slate-500 border-b-4 border-transparent hover:text-slate-700">Bahasa Inggris</button>
+            </div>
+
+            <!-- Materi Content Scrollable -->
+            <div class="flex-1 overflow-y-auto custom-scrollbar bg-slate-50 p-4 md:p-6 rounded-2xl border border-slate-200 max-h-[60vh] text-left space-y-6" id="materi-content-box">
+                <!-- Content will be injected dynamically -->
+            </div>
+        </section>
+
+        <!-- SCREEN 3: MAPEL SELECTION FOR QUIZ -->
+        <section id="screen-select-mapel" class="hidden p-6 md:p-10 flex-1 flex flex-col items-center justify-center text-center">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Pilih Mata Pelajaran Kuis</h2>
+            <p class="text-slate-600 mb-8">Setiap mata pelajaran memiliki 50 soal latihan sesuai kisi-kisi resmi!</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-2xl">
+                <div onclick="selectSubject('IPA')" class="btn-bounce bg-gradient-to-br from-emerald-400 to-teal-600 text-white p-6 rounded-3xl shadow-xl cursor-pointer border-4 border-white flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mb-3">🧪</div>
+                    <h3 class="text-2xl font-bold">Sains (IPA)</h3>
+                    <p class="text-xs text-emerald-100 mt-1 font-medium">50 Soal • Wujud Benda & Perubahannya</p>
+                </div>
+                
+                <div onclick="selectSubject('MTK')" class="btn-bounce bg-gradient-to-br from-amber-400 to-orange-500 text-white p-6 rounded-3xl shadow-xl cursor-pointer border-4 border-white flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mb-3">📐</div>
+                    <h3 class="text-2xl font-bold">Matematika</h3>
+                    <p class="text-xs text-amber-100 mt-1 font-medium">50 Soal • Pecahan, Pengukuran, Geometri & Soal Cerita</p>
+                </div>
+
+                <div onclick="selectSubject('ING')" class="btn-bounce bg-gradient-to-br from-sky-400 to-blue-600 text-white p-6 rounded-3xl shadow-xl cursor-pointer border-4 border-white flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl mb-3">🇬🇧</div>
+                    <h3 class="text-2xl font-bold">Bahasa Inggris</h3>
+                    <p class="text-xs text-sky-100 mt-1 font-medium">50 Soal • Past Tense & Short Comprehensions</p>
+                </div>
+            </div>
+            
+            <button onclick="showScreen('screen-welcome')" class="mt-8 text-slate-500 hover:text-slate-700 font-bold">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Menu Utama
+            </button>
+        </section>
+
+        <!-- SCREEN 4: GAME / QUIZ INTERFACE -->
+        <section id="screen-quiz" class="hidden p-4 md:p-6 flex-1 flex flex-col justify-between">
+            <!-- Game Status Header Bar -->
+            <div class="bg-slate-100 p-3 rounded-2xl border border-slate-200 flex justify-between items-center mb-4 shadow-sm">
+                <!-- Subject & Progress -->
+                <div class="flex items-center space-x-2">
+                    <span id="quiz-subject-tag" class="px-3 py-1 bg-sky-500 text-white rounded-xl text-xs font-bold uppercase">IPA</span>
+                    <span class="text-xs md:text-sm font-bold text-slate-600">Soal <span id="quiz-current-num">1</span> dari <span id="quiz-total-num">50</span></span>
+                </div>
+
+                <!-- Timer -->
+                <div class="flex items-center space-x-1 bg-amber-100 text-amber-800 px-3 py-1 rounded-xl border border-amber-300">
+                    <i class="fa-regular fa-clock font-bold animate-spin"></i>
+                    <span id="quiz-timer" class="font-extrabold text-sm md:text-base">30s</span>
+                </div>
+
+                <!-- Lives -->
+                <div class="flex items-center space-x-1" id="quiz-lives-container">
+                    <!-- Heart Icons dynamically rendered -->
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden mb-4">
+                <div id="quiz-progress-bar" class="bg-sky-500 h-full transition-all duration-300" style="width: 2%;"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-gradient-to-b from-sky-50 to-white p-5 md:p-8 rounded-3xl border-2 border-sky-100 shadow-sm text-left mb-4 flex-1 flex flex-col justify-center">
+                <h3 id="quiz-question-text" class="text-lg md:text-xl font-bold text-slate-800 mb-6 leading-relaxed">
+                    Pertanyaan soal akan muncul di sini...
+                </h3>
+
+                <!-- Multiple Choice Options Grid -->
+                <div id="quiz-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+                    <!-- Option Buttons Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Explanation Modal / Box (Hidden by default, shown after answering) -->
+            <div id="quiz-explanation-box" class="hidden p-4 rounded-2xl mb-4 text-left shadow-md border-2">
+                <div class="flex items-start space-x-3">
+                    <div id="explanation-icon" class="text-2xl mt-0.5">💡</div>
+                    <div>
+                        <h4 id="explanation-title" class="font-bold text-base">Pembahasan:</h4>
+                        <p id="explanation-text" class="text-sm mt-1 leading-relaxed">Penjelasan cara penyelesaian soal akan ditampilkan di sini.</p>
+                    </div>
+                </div>
+                <button onclick="nextQuestion()" class="mt-3 w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl shadow btn-bounce text-sm">
+                    Lanjut ke Soal Berikutnya <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 5: RESULT & REVIEW -->
+        <section id="screen-result" class="hidden p-6 md:p-8 flex-1 flex flex-col items-center justify-center text-center">
+            <div id="result-badge-icon" class="text-6xl mb-2">🏆</div>
+            <h2 id="result-title" class="text-3xl font-extrabold text-slate-800">Latihan Selesai!</h2>
+            <p id="result-subtitle" class="text-slate-600 font-medium mb-4">Hasil Kerja Keras Kamu Hari Ini</p>
+
+            <!-- Score Stats Box -->
+            <div class="bg-slate-50 border-2 border-slate-200 p-6 rounded-3xl w-full max-w-md shadow-inner mb-6">
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                        <span class="block text-xs font-bold text-slate-400 uppercase">Skor Akhir</span>
+                        <span id="res-score" class="text-2xl md:text-3xl font-extrabold text-sky-600">80</span>
+                    </div>
+                    <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                        <span class="block text-xs font-bold text-emerald-500 uppercase">Benar</span>
+                        <span id="res-correct" class="text-2xl md:text-3xl font-extrabold text-emerald-600">40</span>
+                    </div>
+                    <div class="p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                        <span class="block text-xs font-bold text-red-400 uppercase">Salah</span>
+                        <span id="res-wrong" class="text-2xl md:text-3xl font-extrabold text-red-500">10</span>
+                    </div>
+                </div>
+                <p id="res-feedback-msg" class="text-sm font-bold text-slate-700 mt-4 bg-amber-100 p-2 rounded-xl text-amber-900">Hebat sekali! Teruskan berlatih ya!</p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-center w-full max-w-md">
+                <button onclick="showScreen('screen-select-mapel')" class="btn-bounce bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-2xl shadow-md flex-1">
+                    <i class="fa-solid fa-rotate-left mr-1"></i> Coba Mapel Lain
+                </button>
+                <button onclick="showReviewModal()" class="btn-bounce bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-2xl shadow-md flex-1">
+                    <i class="fa-solid fa-list-check mr-1"></i> Evaluasi Pembahasan
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 6: MINI GAME TEBAK GAMBAR -->
+        <section id="screen-tebak-gambar" class="hidden p-4 md:p-8 flex-1 flex flex-col justify-between items-center text-center">
+            <div class="w-full flex justify-between items-center mb-2">
+                <button onclick="showScreen('screen-welcome')" class="text-purple-600 font-bold flex items-center hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Kembali
+                </button>
+                <span class="bg-purple-100 text-purple-800 font-bold px-3 py-1 rounded-full text-xs">Mini Game Rileksasi 🧩</span>
+            </div>
+
+            <div class="bg-gradient-to-b from-purple-50 to-white border-4 border-purple-200 p-6 rounded-3xl w-full max-w-lg shadow-lg my-auto">
+                <div class="text-sm font-bold text-purple-600 mb-2">Tebak Peribahasa / Kata Dari Emoji Ini:</div>
+                
+                <!-- Display Big Emojis -->
+                <div id="tebak-emoji-display" class="text-5xl md:text-6xl my-6 bg-white py-6 rounded-2xl border-2 border-purple-100 shadow-inner tracking-widest">
+                    🌧️ 🐸 💧
+                </div>
+
+                <!-- Clue / Hint -->
+                <p id="tebak-clue" class="text-slate-600 text-sm font-medium mb-6 bg-purple-50 p-3 rounded-xl border border-purple-100">
+                    Petunjuk: Istilah cuaca atau fenomena alam
+                </p>
+
+                <!-- Options -->
+                <div id="tebak-options-grid" class="grid grid-cols-1 gap-3">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <button onclick="loadNextTebakGambar()" class="btn-bounce bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-2xl shadow-md">
+                Tebak Selanjutnya <i class="fa-solid fa-forward ml-1"></i>
+            </button>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-slate-100 border-t border-slate-200 p-3 text-center text-xs font-semibold text-slate-500">
+            Aplikasi Persiapan Lomba Mata Pelajaran Kelas 4 SD • Giga Innovation (WA: 081329200985)
+        </footer>
+    </div>
+
+    <!-- MODAL REVIEW JAWABAN (Evaluasi Pembahasan Soal) -->
+    <div id="modal-review" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="bg-amber-400 p-4 text-white flex justify-between items-center">
+                <h3 class="text-xl font-bold flex items-center text-amber-950">
+                    <i class="fa-solid fa-book-open-reader mr-2"></i> Evaluasi & Pembahasan Soal
+                </h3>
+                <button onclick="closeReviewModal()" class="w-8 h-8 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center text-amber-950">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div id="review-list-container" class="p-6 overflow-y-auto custom-scrollbar space-y-4 flex-1 text-left">
+                <!-- Review Items Injected Here -->
+            </div>
+            
+            <div class="p-4 bg-slate-50 border-t border-slate-200 text-right">
+                <button onclick="closeReviewModal()" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl shadow btn-bounce">Tutup Ulasan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & QUESTION BANK -->
+    <script>
+        // State Global Aplikasi
+        let playerName = "Adibah Gilda Thasany";
+        let currentSubject = "";
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let lives = 3;
+        let timer = null;
+        let timeLeft = 30;
+        let userAnswersHistory = [];
+
+        // Dynamic Subjects Questions Database (50 Soal unik per Mapel)
+        const bankSoal = {
+            IPA: [],
+            MTK: [],
+            ING: []
+        };
+
+        // Mini Game Tebak Gambar Database
+        const tebakGambarData = [
+            { emoji: "🌧️ 🐸 💧", clue: "Petunjuk: Hujan deras dan katak bersuara", options: ["Hujan Lebat", "Katak Menyanyi", "Katak Kebanjiran"], correct: 0 },
+            { emoji: "☀️ 🕶️ 🏝️", clue: "Petunjuk: Suasana liburan di musim panas", options: ["Liburan Pantai", "Kacamata Hitam", "Matahari Terbakar"], correct: 0 },
+            { emoji: "📖 🤓 🏫", clue: "Petunjuk: Tempat menuntut ilmu", options: ["Anak Rajin Belajar", "Sekolah Pintar", "Perpustakaan Mini"], correct: 0 },
+            { emoji: "🍌 🐒 🌳", clue: "Petunjuk: Makanan kesukaan hewan di pohon", options: ["Monyet Makan Pisang", "Pohon Pisang", "Hutan Kera"], correct: 0 },
+            { emoji: "🚗 ⛽ 🏁", clue: "Petunjuk: Isi bahan bakar sebelum melaju", options: ["Isi Bensin Mobil", "Balapan Jalanan", "Mobil Mogok"], correct: 0 },
+            { emoji: "🐱 🐟 🍲", clue: "Petunjuk: Kucing sangat suka makanan ini", options: ["Kucing Makan Ikan", "Sup Ikan", "Kucing Memasak"], correct: 0 },
+            { emoji: "🍕 🧀 🔥", clue: "Petunjuk: Makanan berbentuk lingkaran dengan keju leleh", options: ["Pizza Keju Panggang", "Roti Bakar", "Kue Ulang Tahun"], correct: 0 }
+        ];
+        let currentTebakIndex = 0;
+
+        // Generate 50 Soal Beragam per Mapel SESUAI KISI-KISI RESMI
+        function generateAllQuestions() {
+            // ----------------------------------------------------
+            // 1. SAINS (IPA): KISI-KISI WUJUD BENDA DAN PERUBAHANNYA (50 SOAL)
+            // ----------------------------------------------------
+            bankSoal.IPA = [
+                { q: "Perubahan wujud benda dari padat menjadi cair akibat pengaruh energi panas dinamakan...", options: ["Mencair", "Membeku", "Menguap", "Menyublim"], correct: 0, exp: "Mencair terjadi ketika zat padat menerima kalor/panas sehingga berubah wujud menjadi cair." },
+                { q: "Es batu yang didiamkan di atas meja terbuka lama-kelamaan berubah menjadi air. Proses ini merupakan contoh...", options: ["Mencair", "Mengembun", "Membeku", "Mengkristal"], correct: 0, exp: "Es menyerap panas dari suhu ruangan sekitar sehingga mencair." },
+                { q: "Perubahan wujud benda dari zat cair menjadi padat karena pelepasan energi panas disebut...", options: ["Membeku", "Mencair", "Menguap", "Menyublim"], correct: 0, exp: "Membeku terjadi ketika cairan melepaskan kalor (didinginkan) hingga menjadi padat." },
+                { q: "Air yang dimasukkan ke dalam freezer kulkas akan berubah menjadi es batu. Peristiwa ini adalah...", options: ["Membeku", "Mengembun", "Mencair", "Menyublim"], correct: 0, exp: "Air melepaskan panas di suhu dingin freezer sehingga mengalami peristiwa membeku." },
+                { q: "Perubahan wujud benda cair menjadi gas saat dipanaskan sampai mendidih dinamakan...", options: ["Menguap", "Mengembun", "Mencair", "Menyublim"], correct: 0, exp: "Menguap adalah proses perubahan zat cair menjadi gas karena menerima panas." },
+                { q: "Pakaian basah yang dijemur di bawah terik matahari lama-kelamaan menjadi kering karena airnya mengalami proses...", options: ["Menguap", "Mengembun", "Membeku", "Menyublim"], correct: 0, exp: "Air pada serat kain menyerap panas matahari dan berubah menjadi uap air." },
+                { q: "Perubahan wujud zat gas menjadi zat cair dinamakan...", options: ["Mengembun", "Menguap", "Menyublim", "Mencair"], correct: 0, exp: "Mengembun (kondensasi) adalah perubahan dari bentuk gas menjadi wujud cair." },
+                { q: "Timbulnya titik-titik air di bagian luar gelas yang berisi es batu merupakan peristiwa...", options: ["Mengembun", "Mencair", "Menguap", "Mengkristal"], correct: 0, exp: "Uap air di udara sekitar gelas mendingin saat menyentuh dinding gelas lalu mengembun." },
+                { q: "Perubahan wujud benda padat langsung menjadi benda gas tanpa melalui wujud cair dinamakan...", options: ["Menyublim", "Menguap", "Mencair", "Membeku"], correct: 0, exp: "Menyublim adalah perubahan zat padat langsung menjadi gas." },
+                { q: "Kapur barus (kamfer) yang ditaruh di dalam lemari pakaian lama-lama ukurannya mengecil dan habis. Peristiwa ini adalah...", options: ["Menyublim", "Mencair", "Menguap", "Mengembun"], correct: 0, exp: "Kapur barus padat menyerap panas ruangan dan menyublim menjadi gas wangi." },
+                { q: "Perubahan wujud gas menjadi padat sering disebut juga sebagai...", options: ["Mengkristal (Deposisi)", "Menyublim", "Mengembun", "Mencair"], correct: 0, exp: "Deposisi atau mengkristal adalah perubahan dari wujud gas langsung menjadi padat." },
+                { q: "Terbentuknya salju di awan pada suhu sangat dingin merupakan contoh peristiwa...", options: ["Mengkristal (Deposisi)", "Membeku", "Mengembun", "Menyublim"], correct: 0, exp: "Uap air di atmosfer yang sangat dingin langsung berubah menjadi kristal salju padat." },
+                { q: "Benda padat memiliki ciri-ciri utama yaitu...", options: ["Bentuk dan volumenya tetap", "Bentuk berubah sesuai wadah", "Volumenya selalu berubah", "Menekan ke segala arah"], correct: 0, exp: "Zat padat memiliki ikatan partikel sangat rapat sehingga bentuk dan volumenya selalu tetap." },
+                { q: "Sifat utama benda cair jika dipindahkan ke wadah yang berbeda bentuknya adalah...", options: ["Bentuknya mengikuti wadahnya, volumenya tetap", "Bentuk dan volumenya tetap", "Bentuk tetap, volumenya berubah", "Mengisi seluruh ruangan"], correct: 0, exp: "Benda cair mengalir dan menyesuaikan bentuk wadahnya, namun volumenya tidak berubah." },
+                { q: "Ciri khas utama benda berwujud gas adalah...", options: ["Mengisi seluruh ruangan yang ditempatinya", "Bentuknya tetap tidak berubah", "Tidak dapat dirasakan", "Volumenya selalu tetap"], correct: 0, exp: "Gas bergerak bebas dan mengisi seluruh volume ruangan tempat gas tersebut berada." },
+                { q: "Batu, pensil, dan meja kayu termasuk dalam kelompok benda berwujud...", options: ["Padat", "Cair", "Gas", "Plasma"], correct: 0, exp: "Batu, pensil, dan meja memiliki bentuk serta volume tetap sehingga termasuk benda padat." },
+                { q: "Minyak goreng, kecap, dan air susu merupakan contoh benda berwujud...", options: ["Cair", "Padat", "Gas", "Uap"], correct: 0, exp: "Minyak, kecap, dan susu bersifat cair karena mengalir dan menyesuaikan bentuk wadah." },
+                { q: "Asap pembakaran, udara di dalam balon, dan uap air termasuk kelompok benda berwujud...", options: ["Gas", "Cair", "Padat", "Kristal"], correct: 0, exp: "Asap, udara, dan uap air tidak memiliki bentuk tetap dan mengisi ruang (benda gas)." },
+                { q: "Lilin yang dibakar akan meleleh menjadi cairan lilin. Perubahan wujud ini terjadi karena lilin...", options: ["Menerima kalor (panas)", "Melepaskan kalor (panas)", "Didinginkan", "Ditekan kuat"], correct: 0, exp: "Kalor dari nyala api membuat lilin padat mencair." },
+                { q: "Cairan lilin yang menetes lalu mendiam lama-kelamaan menjadi keras kembali. Peristiwa ini disebut...", options: ["Membeku", "Mencair", "Menguap", "Menyublim"], correct: 0, exp: "Cairan lilin melepaskan kalor ke udara sekitar sehingga membeku menjadi padat." },
+                { q: "Air mentah yang dipanaskan di atas kompor menyerap energi...", options: ["Panas (Kalor)", "Listrik", "Bunyi", "Gerak"], correct: 0, exp: "Api kompor memberikan energi panas (kalor) pada air." },
+                { q: "Rumput di lapangan pada pagi hari terasa basah padahal malamnya tidak hujan. Hal ini disebabkan oleh peristiwa...", options: ["Mengembun", "Mencair", "Menguap", "Menyublim"], correct: 0, exp: "Uap air di udara dingin malam hari mengembun menjadi embun pagi di dedaunan." },
+                { q: "Proses pembuatan garam dapur dari air laut di tambak memanfaatkan peristiwa...", options: ["Menguap", "Mencair", "Menyublim", "Mengembun"], correct: 0, exp: "Air laut dijemur matahari hingga airnya menguap meninggalkan kristal garam." },
+                { q: "Mengapa es krim yang kita pegang di siang hari yang terik cepat meleleh?", options: ["Es krim menerima panas dari udara dan tangan", "Es krim melepaskan dingin", "Es krim menyerap udara segar", "Es krim berubah jadi gas"], correct: 0, exp: "Suhu udara panas membuat es krim menerima kalor sehingga mencair." },
+                { q: "Benda padat yang diubah bentuknya dengan cara ditekan atau dipukul contohnya adalah...", options: ["Plastisin / Tanah liat", "Batu besi", "Kaca tebal", "Kayu keras"], correct: 0, exp: "Plastisin dan tanah liat bersifat lunak sehingga bentuknya mudah diubah dengan tekanan gaya." },
+                { q: "Zat yang susunan molekul atau partikelnya sangat rapat dan teratur adalah...", options: ["Zat padat", "Zat cair", "Zat gas", "Zat uap"], correct: 0, exp: "Partikel zat padat berikatan sangat kuat dan rapat." },
+                { q: "Zat yang letak partikelnya agak renggang dan dapat bergerak mengalir adalah...", options: ["Zat cair", "Zat padat", "Zat gas", "Zat beku"], correct: 0, exp: "Partikel zat cair kurang rapat dibandingkan zat padat sehingga mudah mengalir." },
+                { q: "Zat yang partikelnya sangat renggang dan bergerak sangat bebas ke segala arah adalah...", options: ["Zat gas", "Zat cair", "Zat padat", "Zat kental"], correct: 0, exp: "Partikel gas berjauhan sehingga bergerak bebas menekan ke segala arah." },
+                { q: "Pembuatan gula jawa dari nira kelapa yang dipanaskan lalu dituang ke cetakan dan didiamkan mengalami proses...", options: ["Mencair lalu Membeku", "Menguap lalu Menyublim", "Mengembun lalu Mencair", "Membeku lalu Menguap"], correct: 0, exp: "Nira kental dimasak lalu saat didinginkan di cetakan akan membeku menjadi keras." },
+                { q: "Pernyataan yang benar tentang sifat benda cair adalah...", options: ["Permukaan zat cair yang tenang selalu mendatar", "Bentuk zat cair selalu tetap", "Zat cair tidak dapat meresap ke celah kecil", "Zat cair selalu mengalir dari tempat rendah ke tinggi"], correct: 0, exp: "Permukaan zat cair dalam keadaan tenang selalu sejajar/mendatar." },
+                { q: "Peristiwa meresapnya zat cair melalui celah-celah kecil dinamakan...", options: ["Kapilaritas", "Evaporasi", "Kondensasi", "Kristalisasi"], correct: 0, exp: "Kapilaritas membuat minyak tanah naik pada sumbu kompor atau air meresap di kain." },
+                { q: "Sumbu kompor minyak bisa menyala karena minyak naik ke atas melalui celah sumbu. Hal ini memanfaatkan prinsip...", options: ["Kapilaritas", "Menyublim", "Menguap", "Gravitasi"], correct: 0, exp: "Pori-pori kain sumbu menyerap cairan minyak tanah secara kapilaritas." },
+                { q: "Saat kita memasak air menggunakan panci tertutup, di bagian dalam tutup panci terdapat titik-titik air. Titik air tersebut berasal dari...", options: ["Uap air panas yang mengembun saat menyentuh tutup panci", "Air yang meluap dari bawah", "Bocor dari luar panci", "Es yang mencair"], correct: 0, exp: "Uap air naik lalu mendingin di permukaan tutup panci hingga mengembun." },
+                { q: "Mentega yang ditaruh di atas penggorengan panas akan berubah menjadi cair. Perubahan ini dinamakan...", options: ["Mencair", "Menguap", "Membeku", "Menyublim"], correct: 0, exp: "Mentega padat menerima kalor dari kompor sehingga mencair." },
+                { q: "Pembuatan agar-agar dari cairan panas yang didinginkan merupakan contoh peristiwa...", options: ["Membeku", "Mencair", "Menguap", "Mengembun"], correct: 0, exp: "Cairan agar-agar melepaskan panas dan mengeras (membeku) saat dingin." },
+                { q: "Dry ice (es kering) yang terbuat dari karbondioksida padat di suhu ruang akan langsung berubah menjadi asap uap putih. Peristiwa ini adalah...", options: ["Menyublim", "Mencair", "Mengembun", "Membeku"], correct: 0, exp: "Dry ice berubah langsung dari padat menjadi gas asap (menyublim)." },
+                { q: "Benda padat berikut yang berubah wujud mencair jika dipanaskan pada suhu tinggi adalah...", options: ["Cokelat batangan", "Batu kali", "Kayu jati", "Kertas karton"], correct: 0, exp: "Cokelat batangan mengandung lemak yang mudah mencair jika terkena panas." },
+                { q: "Salah satu contoh peristiwa perubahan wujud menguap dalam kehidupan sehari-hari adalah...", options: ["Parfum yang disemprotkan ke baju lama-lama aromanya menyebar", "Membuat es batu di kulkas", "Lilin yang meleleh saat dibakar", "Dinding luar gelas es yang basah"], correct: 0, exp: "Cairan parfum menguap menjadi gas wangi yang menyebar di udara." },
+                { q: "Perubahan wujud yang memerlukan atau menyerap energi panas (kalor) adalah...", options: ["Mencair, menguap, dan menyublim", "Membeku, mengembun, dan mengkristal", "Membeku, mencair, dan mengembun", "Menguap, membeku, dan mengkristal"], correct: 0, exp: "Mencair, menguap, dan menyublim membutuhkan asupan kalor/panas." },
+                { q: "Perubahan wujud yang melepaskan energi panas (kalor) adalah...", options: ["Membeku, mengembun, dan mengkristal", "Mencair, menguap, dan menyublim", "Mencair, membeku, dan menguap", "Menyublim, mengembun, dan mencair"], correct: 0, exp: "Membeku, mengembun, dan mengkristal terjadi saat zat melepaskan panas (mendingin)." },
+                { q: "Jus buah yang dimasukkan ke dalam cetakan pop sicle lalu disimpan di freezer akan menjadi...", options: ["Es lilin padat (Membeku)", "Uap buah (Menguap)", "Embun manis (Mengembun)", "Garam (Mengkristal)"], correct: 0, exp: "Proses pendinginan jus di freezer menyebabkan pembekuan." },
+                { q: "Mengapa botol kaca yang berisi air penuh tidak boleh diisi terlalu padat saat dimasukkan ke freezer?", options: ["Karena air yang membeku volumenya mengembang dan bisa memecahkan botol", "Karena botol akan mencair", "Karena airnya akan habis menguap", "Karena warna air berubah"], correct: 0, exp: "Air saat membeku mengalami anomali yaitu volumenya membesar (mengembang)." },
+                { q: "Alat pembuat es puter tradisional memanfaatkan campuran es batu dan garam dapur untuk...", options: ["Menurunkan suhu es agar adonan lebih cepat membeku", "Membuat adonan es jadi asin", "Menyublimkan adonan", "Menguapkan adonan es"], correct: 0, exp: "Garam menurunkan titik beku es sehingga adonan es puter cepat mengeras/membeku." },
+                { q: "Gas LPG dalam tabung berada dalam wujud cair karena ditekan dengan tekanan tinggi. Saat kran dibuka, gas keluar berwujud...", options: ["Gas", "Padat", "Cair", "Beku"], correct: 0, exp: "Saat tekanan dilepas, cairan LPG keluar berubah menjadi wujud gas." },
+                { q: "Benda cair selalu mengalir dari...", options: ["Tempat tinggi ke tempat yang lebih rendah", "Tempat rendah ke tempat yang lebih tinggi", "Segala arah ke pusat", "Bawah ke atas"], correct: 0, exp: "Akibat gravitasi bumi, zat cair mengalir dari tempat yang lebih tinggi ke rendah." },
+                { q: "Contoh benda yang dapat kembali ke bentuk semula setelah ditarik (elastis) adalah...", options: ["Karet gelang", "Plastisin", "Kertas", "Kayu"], correct: 0, exp: "Karet gelang adalah benda padat elastis." },
+                { q: "Batu kapur yang disiram air akan mengeluarkan gelembung dan terasa panas. Hal ini menunjukkan...", options: ["Terjadi reaksi yang menghasilkan panas", "Batu kapur membeku", "Batu kapur menyublim", "Air mengembun"], correct: 0, exp: "Reaksi kimia pelepasan kalor (eksoterm)." },
+                { q: "Asap knalpot kendaraan bermotor yang menempel di dinding knalpot menjadi jelaga hitam padat merupakan contoh peristiwa...", options: ["Mengkristal (Deposisi)", "Mengembun", "Menyublim", "Mencair"], correct: 0, exp: "Gas asap panas berubah langsung menjadi partikel jelaga padat." },
+                { q: "Mengoleskan minyak kayu putih ke kulit membuat kulit terasa dingin karena minyak kayu putih...", options: ["Cepat menguap dengan menyerap panas dari kulit", "Mencair di kulit", "Membeku di kulit", "Mengembun di kulit"], correct: 0, exp: "Minyak kayu putih yang volatile mudah menguap dengan menyerap kalor kulit." },
+                { q: "Perubahan wujud benda dari padat menjadi cair, lalu kembali menjadi padat terjadi pada proses...", options: ["Daur ulang plastik dan pembuatan lilin", "Memasak air", "Membuat garam", "Menjemur pakaian"], correct: 0, exp: "Plastik atau lilin dipanaskan hingga mencair lalu dicetak dan didinginkan hingga membeku kembali." }
+            ];
+
+            // ----------------------------------------------------
+            // 2. MATEMATIKA: KISI-KISI PECAHAN, PENGUKURAN, GEOMETRI, DIAGRAM & SOAL CERITA (50 SOAL)
+            // ----------------------------------------------------
+            bankSoal.MTK = [
+                // PECAHAN
+                { q: "Bentuk sederhana dari pecahan 12/16 adalah...", options: ["3/4", "2/3", "4/5", "5/6"], correct: 0, exp: "Cara pengerjaan:\nBagi pembilang dan penyebut dengan FPB nya yaitu 4.\n(12 ÷ 4) / (16 ÷ 4) = 3/4." },
+                { q: "Pecahan senilai dari 2/5 adalah...", options: ["4/10", "3/10", "5/15", "6/20"], correct: 0, exp: "Cara pengerjaan:\nKalikan pembilang dan penyebut dengan 2.\n(2 × 2) / (5 × 2) = 4/10." },
+                { q: "Hasil penjumlahan dari 3/8 + 2/8 adalah...", options: ["5/8", "5/16", "1/8", "6/8"], correct: 0, exp: "Penyebut sudah sama (8). Jumlahkan pembilang: 3 + 2 = 5. Hasil = 5/8." },
+                { q: "Hasil pengurangan pecahan 9/12 - 4/12 adalah...", options: ["5/12", "5/0", "13/12", "1/2"], correct: 0, exp: "Penyebut sama (12). Kurangkan pembilang: 9 - 4 = 5. Hasil = 5/12." },
+                { q: "Bentuk desimal dari pecahan 4/5 adalah...", options: ["0,8", "0,4", "0,5", "0,6"], correct: 0, exp: "Ubah penyebut ke 10: (4 × 2) / (5 × 2) = 8/10 = 0,8." },
+                { q: "Pecahan campuran 2 1/3 jika diubah menjadi pecahan biasa adalah...", options: ["7/3", "6/3", "5/3", "8/3"], correct: 0, exp: "Cara: (2 × 3 + 1) / 3 = (6 + 1) / 3 = 7/3." },
+                { q: "Bentuk persen dari pecahan 1/4 adalah...", options: ["25%", "50%", "75%", "20%"], correct: 0, exp: "Cara: 1/4 × 100% = 25%." },
+                
+                // PENGUKURAN (SUDUT, BERAT, JARAK, WAKTU, UANG)
+                { q: "Besar sudut siku-siku adalah...", options: ["90°", "180°", "45°", "360°"], correct: 0, exp: "Sudut siku-siku besarnya tepat 90 derajat." },
+                { q: "Sudut yang besarnya 45° termasuk jenis sudut...", options: ["Lancip", "Tumpul", "Siku-siku", "Lurus"], correct: 0, exp: "Sudut lancip besarnya kurang dari 90° (0° < x < 90°)." },
+                { q: "Sudut yang besarnya 120° termasuk jenis sudut...", options: ["Tumpul", "Lancip", "Siku-siku", "Lurus"], correct: 0, exp: "Sudut tumpul besarnya antara 90° dan 180°." },
+                { q: "Berat sebuah karung beras adalah 3,5 kg. Berat beras tersebut dalam gram adalah...", options: ["3.500 gram", "350 gram", "35.000 gram", "35 gram"], correct: 0, exp: "1 kg = 1.000 gram. Maka 3,5 kg × 1.000 = 3.500 gram." },
+                { q: "Ayah memiliki 4 ton pupuk. Berapa kg berat pupuk tersebut? (1 ton = 1.000 kg)", options: ["4.000 kg", "400 kg", "40.000 kg", "40 kg"], correct: 0, exp: "4 ton × 1.000 kg = 4.000 kg." },
+                { q: "Jarak kota A ke kota B pada peta adalah 5 km. Jarak tersebut sama dengan ... meter.", options: ["5.000 m", "500 m", "50.000 m", "50 m"], correct: 0, exp: "1 km = 1.000 m. Maka 5 km × 1.000 = 5.000 meter." },
+                { q: "Adibah belajar selama 1 jam 45 menit. Berapa menit total waktu belajar Adibah?", options: ["105 menit", "100 menit", "145 menit", "90 menit"], correct: 0, exp: "1 jam = 60 menit. Total = 60 menit + 45 menit = 105 menit." },
+                { q: "Pukul 08.00 ditambah 2 jam 30 menit menunjukkan pukul...", options: ["10.30", "11.00", "10.00", "11.30"], correct: 0, exp: "08.00 + 02.30 = 10.30." },
+                { q: "Ibu membeli baju seharga Rp 75.000,00 dan sepatu Rp 120.000,00. Ibu membayar dengan uang Rp 200.000,00. Uang kembalian Ibu adalah...", options: ["Rp 5.000,00", "Rp 15.000,00", "Rp 10.000,00", "Rp 25.000,00"], correct: 0, exp: "Total belanja = 75.000 + 120.000 = 195.000.\nKembalian = 200.000 - 195.000 = Rp 5.000,00." },
+                { q: "Adibah mempunyai 3 lembar uang Rp 20.000,00 dan 2 lembar uang Rp 5.000,00. Jumlah uang Adibah adalah...", options: ["Rp 70.000,00", "Rp 60.000,00", "Rp 75.000,00", "Rp 65.000,00"], correct: 0, exp: "(3 × 20.000) + (2 × 5.000) = 60.000 + 10.000 = Rp 70.000,00." },
+
+                // GEOMETRI (KELILING & LUAS BANGUN DATAR)
+                { q: "Keliling persegi yang sisinya 12 cm adalah...", options: ["48 cm", "144 cm", "24 cm", "36 cm"], correct: 0, exp: "Keliling Persegi = 4 × Sisi = 4 × 12 cm = 48 cm." },
+                { q: "Luas persegi yang panjang sisinya 15 cm adalah...", options: ["225 cm²", "60 cm²", "30 cm²", "150 cm²"], correct: 0, exp: "Luas Persegi = Sisi × Sisi = 15 × 15 = 225 cm²." },
+                { q: "Keliling persegi panjang dengan panjang 14 cm dan lebar 8 cm adalah...", options: ["44 cm", "112 cm", "22 cm", "56 cm"], correct: 0, exp: "Keliling = 2 × (Panjang + Lebar) = 2 × (14 + 8) = 2 × 22 = 44 cm." },
+                { q: "Luas persegi panjang yang panjangnya 20 cm dan lebarnya 9 cm adalah...", options: ["180 cm²", "58 cm²", "29 cm²", "360 cm²"], correct: 0, exp: "Luas = Panjang × Lebar = 20 cm × 9 cm = 180 cm²." },
+                { q: "Sebuah segitiga memiliki panjang alas 12 cm dan tinggi 10 cm. Luas segitiga tersebut adalah...", options: ["60 cm²", "120 cm²", "22 cm²", "44 cm²"], correct: 0, exp: "Luas Segitiga = (Alas × Tinggi) ÷ 2 = (12 × 10) ÷ 2 = 120 ÷ 2 = 60 cm²." },
+                { q: "Keliling segitiga sama sisi yang panjang sisinya 9 cm adalah...", options: ["27 cm", "81 cm", "18 cm", "36 cm"], correct: 0, exp: "Keliling Segitiga Sama Sisi = 3 × Sisi = 3 × 9 cm = 27 cm." },
+
+                // DIAGRAM & DATA
+                { q: "Data nilai matematika 5 siswa: 80, 90, 75, 85, 90. Nilai tertinggi yang diperoleh siswa adalah...", options: ["90", "85", "80", "95"], correct: 0, exp: "Dari kumpulan data: 75, 80, 85, 90, 90, angka terbesar adalah 90." },
+                { q: "Tabel penjualan buah: Apel 15 kg, Jeruk 25 kg, Mangga 20 kg. Buah yang paling banyak terjual adalah...", options: ["Jeruk", "Apel", "Mangga", "Semua sama"], correct: 0, exp: "Jeruk terjual 25 kg (jumlah tertinggi)." },
+                { q: "Selisih penjualan buah Jeruk (25 kg) dan Apel (15 kg) adalah...", options: ["10 kg", "40 kg", "5 kg", "15 kg"], correct: 0, exp: "Selisih = 25 kg - 15 kg = 10 kg." },
+
+                // SOAL CERITA OPERASI HITUNG (PENJUMLAHAN, PENGURANGAN, PERKALIAN, PEMBAGIAN)
+                { q: "Toko Pak Budi memiliki stok 1.250 kg beras. Hari ini masuk lagi pasokan 750 kg beras. Berapa total beras Pak Budi?", options: ["2.000 kg", "1.900 kg", "2.100 kg", "1.800 kg"], correct: 0, exp: "1.250 + 750 = 2.000 kg." },
+                { q: "Perpustakaan sekolah memiliki 3.500 buku. Sebanyak 1.280 buku sedang dipinjam siswa. Sisa buku di perpustakaan adalah...", options: ["2.220 buku", "2.320 buku", "2.120 buku", "2.280 buku"], correct: 0, exp: "3.500 - 1.280 = 2.220 buku." },
+                { q: "Sebuah pabrik roti menghasilkan 25 kotak roti per hari. Jika 1 kotak berisi 12 roti, berapa total roti yang dihasilkan per hari?", options: ["300 roti", "250 roti", "350 roti", "275 roti"], correct: 0, exp: "25 × 12 = 300 roti." },
+                { q: "Pak guru membagikan 144 pensil secara merata kepada 12 muridnya. Banyak pensil yang diterima setiap murid adalah...", options: ["12 pensil", "14 pensil", "10 pensil", "16 pensil"], correct: 0, exp: "144 ÷ 12 = 12 pensil per murid." },
+                { q: "Di sebuah perkebunan terdapat 15 baris pohon mangga. Setiap baris terdiri dari 18 pohon. Jumlah seluruh pohon mangga adalah...", options: ["270 pohon", "250 pohon", "280 pohon", "300 pohon"], correct: 0, exp: "15 × 18 = 270 pohon." },
+                { q: "Hasil dari 4.500 - 1.750 + 850 adalah...", options: ["3.600", "3.500", "3.700", "2.750"], correct: 0, exp: "Hitung urut dari kiri: (4.500 - 1.750) = 2.750. Lalu 2.750 + 850 = 3.600." },
+                { q: "Hasil dari (120 + 80) × 5 adalah...", options: ["1.000", "600", "800", "1.200"], correct: 0, exp: "Kerjakan kurung dulu: (120 + 80) = 200. Lalu 200 × 5 = 1.000." },
+                { q: "Hasil dari 500 - 50 × 4 adalah...", options: ["300", "1.800", "400", "200"], correct: 0, exp: "Kerjakan perkalian dulu: 50 × 4 = 200. Lalu 500 - 200 = 300." },
+                { q: "Pecahan senilai dari 3/4 adalah...", options: ["9/12", "6/10", "8/12", "5/8"], correct: 0, exp: "(3 × 3) / (4 × 3) = 9/12." },
+                { q: "Bentuk pecahan biasa dari 0,75 adalah...", options: ["3/4", "1/2", "1/4", "2/5"], correct: 0, exp: "0,75 = 75/100. Dibagi 25 pada pembilang & penyebut = 3/4." },
+                { q: "Pecahan 2/3 ... 3/5. Tanda perbandingan yang tepat adalah...", options: [">", "<", "=", "≤"], correct: 0, exp: "Samakan penyebut (15): 2/3 = 10/15 dan 3/5 = 9/15. Karena 10/15 > 9/15, maka 2/3 > 3/5." },
+                { q: "Panjang tali A 2,5 meter dan tali B 175 cm. Total panjang kedua tali adalah...", options: ["425 cm", "400 cm", "375 cm", "200 cm"], correct: 0, exp: "2,5 m = 250 cm. Total = 250 cm + 175 cm = 425 cm." },
+                { q: "Ayah membeli 3 kg apel dan 2.000 gram jeruk. Berapa kg total buah yang dibeli Ayah?", options: ["5 kg", "50 kg", "2,3 kg", "6 kg"], correct: 0, exp: "2.000 gram = 2 kg. Total = 3 kg + 2 kg = 5 kg." },
+                { q: "Sebuah sudut terbentuk dari dua garis tegak lurus. Sudut tersebut besarnya...", options: ["90°", "180°", "45°", "60°"], correct: 0, exp: "Dua garis tegak lurus membentuk sudut siku-siku 90°." },
+                { q: "Jenis sudut yang terbentuk pada jarum jam menunjukkan pukul 03.00 adalah...", options: ["Sudut Siku-siku", "Sudut Lancip", "Sudut Tumpul", "Sudut Lurus"], correct: 0, exp: "Jarum pendek di 3 dan jarum panjang di 12 membentuk sudut tegak lurus 90°." },
+                { q: "Luas persegi panjang adalah 96 cm². Jika lebarnya 8 cm, maka panjangnya adalah...", options: ["12 cm", "10 cm", "14 cm", "16 cm"], correct: 0, exp: "Panjang = Luas ÷ Lebar = 96 ÷ 8 = 12 cm." },
+                { q: "Panjang sisi persegi yang memiliki keliling 40 cm adalah...", options: ["10 cm", "20 cm", "5 cm", "15 cm"], correct: 0, exp: "Sisi = Keliling ÷ 4 = 40 ÷ 4 = 10 cm." },
+                { q: "Adibah memiliki uang Rp 50.000,00. Ia membeli buku Rp 18.500,00 dan pensil Rp 4.500,00. Sisa uang Adibah adalah...", options: ["Rp 27.000,00", "Rp 23.000,00", "Rp 28.000,00", "Rp 30.000,00"], correct: 0, exp: "Total belanja = 18.500 + 4.500 = 23.000.\nSisa = 50.000 - 23.000 = Rp 27.000,00." },
+                { q: "Sebuah truk mengangkut 80 karung beras. Setiap karung beratnya 50 kg. Berat total beras dalam truk adalah...", options: ["4.000 kg", "400 kg", "8.000 kg", "5.000 kg"], correct: 0, exp: "80 × 50 = 4.000 kg." },
+                { q: "Hasil dari 360 ÷ 6 × 3 adalah...", options: ["180", "20", "120", "90"], correct: 0, exp: "Hitung urut dari kiri: (360 ÷ 6) = 60. Lalu 60 × 3 = 180." },
+                { q: "Data umur 4 anak: 9 tahun, 10 tahun, 10 tahun, 11 tahun. Rata-rata umur mereka adalah...", options: ["10 tahun", "9 tahun", "11 tahun", "10,5 tahun"], correct: 0, exp: "Total umur = 9 + 10 + 10 + 11 = 40. Rata-rata = 40 ÷ 4 = 10 tahun." },
+                { q: "Urutan pecahan 1/2, 1/4, 3/4 dari yang terkecil ke terbesar adalah...", options: ["1/4, 1/2, 3/4", "3/4, 1/2, 1/4", "1/2, 1/4, 3/4", "1/4, 3/4, 1/2"], correct: 0, exp: "1/4 = 0,25 | 1/2 = 0,50 | 3/4 = 0,75. Urutan terkecil: 1/4, 1/2, 3/4." },
+                { q: "Hasil dari 1/5 + 2/5 + 1/5 adalah...", options: ["4/5", "4/15", "3/5", "2/5"], correct: 0, exp: "Penyebut sama (5). Jumlahkan pembilang: 1 + 2 + 1 = 4/5." },
+                { q: "Besar sudut lurus (satu garis lurus) adalah...", options: ["180°", "90°", "360°", "270°"], correct: 0, exp: "Sudut lurus besarnya persis 180 derajat." }
+            ];
+
+            // ----------------------------------------------------
+            // 3. BAHASA INGGRIS: KISI-KISI PAST TENSE & SHORT COMPREHENSIONS (50 SOAL)
+            // ----------------------------------------------------
+            bankSoal.ING = [
+                // PAST TENSE QUESTIONS
+                { q: "Choose the correct Simple Past Tense verb: 'Yesterday, I ... a nice movie on TV.'", options: ["watched", "watch", "watching", "watches"], correct: 0, exp: "Kata keterangan waktu 'Yesterday' menunjukkan waktu lampau (Past Tense), maka gunakan kata kerja bentuk kedua (Verb 2): 'watched'." },
+                { q: "Complete the sentence: 'She ... to Solo Grand Mall last Sunday.'", options: ["went", "go", "goes", "going"], correct: 0, exp: "Verb 2 dari kata 'go' adalah 'went' (Past Tense)." },
+                { q: "What is the Past Tense (Verb 2) form of the verb 'BUY'?", options: ["bought", "buyed", "buying", "buys"], correct: 0, exp: "Kata 'buy' merupakan irregular verb, bentuk lampaunya (Verb 2) adalah 'bought'." },
+                { q: "Complete: 'They ... very happy after winning the competition yesterday.'", options: ["were", "was", "are", "is"], correct: 0, exp: "Subjek jamak 'They' pada kalimat lampau (Past Tense) menggunakan to be 'were'." },
+                { q: "Complete: 'Adibah ... sick two days ago, but now she is healthy.'", options: ["was", "were", "is", "are"], correct: 0, exp: "Subjek tunggal 'Adibah' pada kalimat lampau (Past Tense) menggunakan to be 'was'." },
+                { q: "What is the Past Tense (Verb 2) of 'EAT'?", options: ["ate", "eated", "eating", "eaten"], correct: 0, exp: "Bentuk Verb 2 dari 'eat' (makan) adalah 'ate'." },
+                { q: "Complete: 'We ... delicious fried rice for breakfast this morning.'", options: ["ate", "eat", "eats", "eating"], correct: 0, exp: "Kejadian pagi tadi yang sudah berlalu menggunakan Verb 2 'ate'." },
+                { q: "Choose the correct negative Past Tense sentence:", options: ["He did not visit his grandmother last week.", "He does not visited his grandmother.", "He not visited his grandmother.", "He did not visited his grandmother."], correct: 0, exp: "Rumus kalimat negatif Past Tense: Subject + did not + Verb 1 ('did not visit')." },
+                { q: "What is the Past Tense (Verb 2) of 'WRITE'?", options: ["wrote", "writed", "writing", "written"], correct: 0, exp: "Verb 2 dari 'write' (menulis) adalah 'wrote'." },
+                { q: "Complete: 'My father ... a new bicycle for me last month.'", options: ["bought", "buys", "buyed", "buying"], correct: 0, exp: "'Last month' menunjukkan Past Tense, gunakan Verb 2 'bought'." },
+                { q: "What is the Past Tense (Verb 2) of 'STUDY'?", options: ["studied", "studyed", "studying", "studies"], correct: 0, exp: "Regular verb 'study' diubah ke Past Tense menjadi 'studied'." },
+                { q: "Complete: 'Adibah ... a beautiful poem yesterday.'", options: ["wrote", "write", "writes", "writing"], correct: 0, exp: "Past tense dari 'write' adalah 'wrote'." },
+                { q: "Complete: 'I ... my lost pencil under the desk yesterday.'", options: ["found", "find", "finded", "finding"], correct: 0, exp: "Verb 2 dari 'find' (menemukan) adalah 'found'." },
+                { q: "What is the Past Tense (Verb 2) of 'PLAY'?", options: ["played", "played", "playing", "plays"], correct: 0, exp: "Regular verb 'play' ditambahkan suffix '-ed' menjadi 'played'." },
+                { q: "Complete: 'The students ... football in the schoolyard yesterday afternoon.'", options: ["played", "play", "plays", "playing"], correct: 0, exp: "Gunakan Verb 2 'played' karena terdapat keterangan 'yesterday afternoon'." },
+                { q: "What is the Past Tense (Verb 2) of 'SEE'?", options: ["saw", "seed", "seeing", "seen"], correct: 0, exp: "Verb 2 dari 'see' (melihat) adalah 'saw'." },
+                { q: "Complete: 'We ... a big elephant at the zoo last holiday.'", options: ["saw", "see", "sees", "seeing"], correct: 0, exp: "'Last holiday' menunjukkan waktu lampau, gunakan Verb 2 'saw'." },
+                { q: "What is the Past Tense (Verb 2) of 'DRINK'?", options: ["drank", "drinked", "drinking", "drunk"], correct: 0, exp: "Verb 2 dari 'drink' adalah 'drank'." },
+                { q: "Complete: 'Budi ... a glass of fresh milk this morning.'", options: ["drank", "drink", "drinks", "drinking"], correct: 0, exp: "Gunakan Verb 2 'drank' untuk kejadian lampau." },
+                { q: "What is the Past Tense (Verb 2) of 'MAKE'?", options: ["made", "maked", "making", "makes"], correct: 0, exp: "Verb 2 dari 'make' (membuat) adalah 'made'." },
+                { q: "Complete: 'Mother ... a delicious chocolate cake for my birthday yesterday.'", options: ["made", "make", "makes", "making"], correct: 0, exp: "Past Tense dari 'make' adalah 'made'." },
+                { q: "Which word indicates Past Tense time?", options: ["Yesterday", "Tomorrow", "Now", "Every day"], correct: 0, exp: "'Yesterday' (kemarin) adalah kata keterangan waktu untuk Past Tense." },
+                { q: "Which time expression is NOT for Past Tense?", options: ["Next week", "Last night", "Two days ago", "Yesterday"], correct: 0, exp: "'Next week' (minggu depan) digunakan untuk waktu yang akan datang (Future Tense)." },
+                { q: "What is the Past Tense form of 'IS / AM'?", options: ["was", "were", "been", "be"], correct: 0, exp: "To be 'is' dan 'am' berubah menjadi 'was' pada bentuk Past Tense." },
+                { q: "What is the Past Tense form of 'ARE'?", options: ["were", "was", "been", "be"], correct: 0, exp: "To be 'are' berubah menjadi 'were' pada bentuk Past Tense." },
+
+                // SHORT COMPREHENSIONS (READING TEXTS & QUESTIONS)
+                // Text 1: Adibah's Holiday
+                { q: "Read Text 1:\n'Last Sunday, Adibah went to the park with her family. They rode bicycles and ate ice cream. Adibah was very happy.'\n\nQuestion: Where did Adibah go last Sunday?", options: ["To the park", "To the beach", "To the zoo", "To the market"], correct: 0, exp: "Teks menyatakan: 'Adibah went to the park with her family'." },
+                { q: "Read Text 1 again:\nWho did Adibah go to the park with?", options: ["Her family", "Her classmates", "Her teacher", "Alone"], correct: 0, exp: "Teks menyatakan: 'with her family'." },
+                { q: "Read Text 1 again:\nWhat did they eat at the park?", options: ["Ice cream", "Fried rice", "Pizza", "Burger"], correct: 0, exp: "Teks menyatakan: 'and ate ice cream'." },
+                { q: "Read Text 1 again:\nHow did Adibah feel at the park?", options: ["Very happy", "Sad", "Tired", "Angry"], correct: 0, exp: "Teks menyatakan: 'Adibah was very happy'." },
+
+                // Text 2: The Smart Cat
+                { q: "Read Text 2:\n'Rina has a cat named Milo. Yesterday, Milo found a small red ball under the sofa. Milo played with the ball all afternoon.'\n\nQuestion: What is the name of Rina's cat?", options: ["Milo", "Kitty", "Bruno", "Pus"], correct: 0, exp: "Teks menyatakan: 'a cat named Milo'." },
+                { q: "Read Text 2 again:\nWhat did Milo find yesterday?", options: ["A small red ball", "A fish", "A mouse", "A hat"], correct: 0, exp: "Teks menyatakan: 'Milo found a small red ball'." },
+                { q: "Read Text 2 again:\nWhere did Milo find the red ball?", options: ["Under the sofa", "On the table", "In the kitchen", "Behind the door"], correct: 0, exp: "Teks menyatakan: 'under the sofa'." },
+
+                // Text 3: English Contest
+                { q: "Read Text 3:\n'Two days ago, Budi joined an English competition. He studied hard for one week. Budi won the first trophy!'\n\nQuestion: What competition did Budi join?", options: ["English competition", "Math competition", "Science competition", "Drawing competition"], correct: 0, exp: "Teks menyatakan: 'joined an English competition'." },
+                { q: "Read Text 3 again:\nHow long did Budi study for the competition?", options: ["One week", "Two days", "One month", "One day"], correct: 0, exp: "Teks menyatakan: 'He studied hard for one week'." },
+                { q: "Read Text 3 again:\nWhat trophy did Budi win?", options: ["The first trophy", "The second trophy", "No trophy", "The third trophy"], correct: 0, exp: "Teks menyatakan: 'Budi won the first trophy!'." },
+
+                // Text 4: Baking Pancakes
+                { q: "Read Text 4:\n'Yesterday morning, Mother and Adibah cooked pancakes in the kitchen. They added honey and strawberries on top. It tasted delicious.'\n\nQuestion: When did they cook pancakes?", options: ["Yesterday morning", "Last night", "Tomorrow", "Every morning"], correct: 0, exp: "Teks menyatakan: 'Yesterday morning'." },
+                { q: "Read Text 4 again:\nWhat toppings did they add on top of the pancakes?", options: ["Honey and strawberries", "Chocolate and cheese", "Sugar and milk", "Butter and salt"], correct: 0, exp: "Teks menyatakan: 'They added honey and strawberries on top'." },
+                { q: "Read Text 4 again:\nHow did the pancakes taste?", options: ["Delicious", "Salty", "Bitter", "Sour"], correct: 0, exp: "Teks menyatakan: 'It tasted delicious'." },
+
+                // Additional Past Tense & Short Comprehension Items
+                { q: "What is the Past Tense (Verb 2) of 'CLEAN'?", options: ["cleaned", "cleaner", "cleaning", "cleans"], correct: 0, exp: "Regular verb 'clean' + '-ed' = 'cleaned'." },
+                { q: "Complete: 'Siti ... her room yesterday morning.'", options: ["cleaned", "clean", "cleans", "cleaning"], correct: 0, exp: "Gunakan Verb 2 'cleaned' untuk waktu lampau 'yesterday morning'." },
+                { q: "What is the Past Tense (Verb 2) of 'GIVE'?", options: ["gave", "gived", "giving", "given"], correct: 0, exp: "Verb 2 dari 'give' (memberi) adalah 'gave'." },
+                { q: "Complete: 'Teacher ... us a new storybook last Monday.'", options: ["gave", "give", "gives", "giving"], correct: 0, exp: "Gunakan Verb 2 'gave'." },
+                { q: "Read Text 5:\n'Deni was late for school yesterday because he missed the school bus.'\n\nQuestion: Why was Deni late for school?", options: ["Because he missed the school bus", "Because he was sick", "Because of heavy rain", "Because he woke up late"], correct: 0, exp: "Teks menyatakan: 'because he missed the school bus'." },
+                { q: "What is the Past Tense (Verb 2) of 'TAKE'?", options: ["took", "taked", "taking", "taken"], correct: 0, exp: "Verb 2 dari 'take' (mengambil/naik) adalah 'took'." },
+                { q: "Complete: 'We ... many photos during our study tour last month.'", options: ["took", "take", "takes", "taking"], correct: 0, exp: "Gunakan Verb 2 'took'." },
+                { q: "What is the Past Tense (Verb 2) of 'RUN'?", options: ["ran", "runned", "running", "runs"], correct: 0, exp: "Verb 2 dari 'run' (berlari) adalah 'ran'." },
+                { q: "Complete: 'The dog ... very fast after the cat yesterday.'", options: ["ran", "run", "runs", "running"], correct: 0, exp: "Gunakan Verb 2 'ran'." },
+                { q: "What is the Past Tense (Verb 2) of 'HELP'?", options: ["helped", "help", "helps", "helping"], correct: 0, exp: "Regular verb 'help' + '-ed' = 'helped'." },
+                { q: "Complete: 'Adibah ... her mother wash the dishes yesterday.'", options: ["helped", "help", "helps", "helping"], correct: 0, exp: "Gunakan Verb 2 'helped'." },
+                { q: "What is the Past Tense (Verb 2) of 'SING'?", options: ["sang", "singed", "singing", "sung"], correct: 0, exp: "Verb 2 dari 'sing' (menyanyi) adalah 'sang'." },
+                { q: "Complete: 'She ... a beautiful English song on the stage yesterday.'", options: ["sang", "sing", "sings", "singing"], correct: 0, exp: "Gunakan Verb 2 'sang'." }
+            ];
+        }
+
+        // Shuffle Options Helper Function so Answer isn't always 'A'
+        function shuffleOptions(questionObj) {
+            let options = [...questionObj.options];
+            let correctAnswerText = options[questionObj.correct];
+            
+            // Fisher-Yates Shuffle
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            let newCorrectIndex = options.indexOf(correctAnswerText);
+            return {
+                q: questionObj.q,
+                options: options,
+                correct: newCorrectIndex,
+                exp: questionObj.exp
+            };
+        }
+
+        // NAVIGATION LOGIC
+        function showScreen(screenId) {
+            const screens = ['screen-welcome', 'screen-materi', 'screen-select-mapel', 'screen-quiz', 'screen-result', 'screen-tebak-gambar'];
+            screens.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+
+            // Update user badge safely
+            const nameInputElem = document.getElementById('player-name-input');
+            if(nameInputElem && nameInputElem.value.trim() !== "") {
+                playerName = nameInputElem.value.trim();
+            }
+            document.getElementById('display-player-name').innerText = playerName;
+            document.getElementById('top-user-badge').classList.remove('hidden');
+        }
+
+        function startMode(mode) {
+            if (mode === 'materi') {
+                showScreen('screen-materi');
+                switchMateriTab('mtk');
+            } else if (mode === 'kuis') {
+                showScreen('screen-select-mapel');
+            } else if (mode === 'tebak-gambar') {
+                showScreen('screen-tebak-gambar');
+                loadTebakGambarQuestion();
+            }
+        }
+
+        // MATERI SECTION CONTENT & TAB SWITCHING
+        function switchMateriTab(tabKey) {
+            const tabs = ['mtk', 'ipa', 'ing'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tabKey) {
+                    btn.className = "py-2 px-4 font-bold border-b-4 border-sky-500 text-sky-600";
+                } else {
+                    btn.className = "py-2 px-4 font-bold text-slate-500 border-b-4 border-transparent hover:text-slate-700";
+                }
+            });
+
+            const contentBox = document.getElementById('materi-content-box');
+            if (tabKey === 'mtk') {
+                contentBox.innerHTML = `
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 mb-4">
+                        <h3 class="text-xl font-bold text-amber-800 mb-2">📌 1. Pecahan (Senilai, Campuran, Desimal, Persen)</h3>
+                        <p class="text-sm leading-relaxed text-amber-900 mb-2">
+                            <strong>• Menyederhanakan Pecahan:</strong> Bagi pembilang dan penyebut dengan FPB nya.<br>
+                            <em>Contoh:</em> 12/16 = (12÷4)/(16÷4) = 3/4.<br>
+                            <strong>• Pecahan ke Desimal:</strong> Ubah penyebut ke 10, 100, dst.<br>
+                            <em>Contoh:</em> 4/5 = (4×2)/(5×2) = 8/10 = 0,8.<br>
+                            <strong>• Pecahan ke Persen:</strong> Kalikan dengan 100% (Contoh: 1/4 × 100% = 25%).
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 mb-4">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">📏 2. Pengukuran (Sudut, Berat, Jarak, Waktu, Uang)</h3>
+                        <ul class="list-disc list-inside text-sm text-blue-900 space-y-1">
+                            <li><strong>Sudut:</strong> Lancip (&lt; 90°), Siku-siku (= 90°), Tumpul (&gt; 90° &amp; &lt; 180°), Lurus (= 180°).</li>
+                            <li><strong>Berat:</strong> 1 kg = 1.000 gram | 1 ton = 1.000 kg.</li>
+                            <li><strong>Jarak:</strong> 1 km = 1.000 meter | 1 m = 100 cm.</li>
+                            <li><strong>Waktu:</strong> 1 jam = 60 menit | 1 menit = 60 detik.</li>
+                            <li><strong>Uang:</strong> Menghitung total harga belanjaan dan uang kembalian.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 mb-4">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-2">📐 3. Geometri (Keliling & Luas Bangun Datar)</h3>
+                        <ul class="list-disc list-inside text-sm text-emerald-900 space-y-1">
+                            <li><strong>Persegi:</strong> Keliling = 4 × Sisi | Luas = Sisi × Sisi</li>
+                            <li><strong>Persegi Panjang:</strong> Keliling = 2 × (Panjang + Lebar) | Luas = Panjang × Lebar</li>
+                            <li><strong>Segitiga:</strong> Keliling = Sisi A + Sisi B + Sisi C | Luas = (Alas × Tinggi) ÷ 2</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+                        <h3 class="text-xl font-bold text-purple-800 mb-2">📊 4. Diagram & Soal Cerita Operasi Hitung</h3>
+                        <p class="text-sm text-purple-900 leading-relaxed">
+                            • <strong>Diagram:</strong> Membaca tabel/diagram data, menentukan data tertinggi, terendah, dan selisih.<br>
+                            • <strong>Soal Cerita:</strong> Pahami kata kunci penjumlahan (ditambah/membeli lagi), pengurangan (dipinjam/sisa/kembalian), perkalian (banyak kotak × isi), dan pembagian (dibagi rata).
+                        </p>
+                    </div>
+                `;
+            } else if (tabKey === 'ipa') {
+                contentBox.innerHTML = `
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 mb-4">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-2">🧪 1. Tiga Wujud Benda</h3>
+                        <p class="text-sm text-emerald-900 leading-relaxed mb-2">
+                            • <strong>Benda Padat:</strong> Bentuk dan volumenya selalu tetap (Contoh: batu, kayu, pensil).<br>
+                            • <strong>Benda Cair:</strong> Bentuk mengikuti wadah, volumenya tetap, mengalir ke tempat rendah (Contoh: air, minyak, kecap).<br>
+                            • <strong>Benda Gas:</strong> Bentuk dan volume berubah mengikuti ruangan, menekan ke segala arah (Contoh: udara di balon, asap, uap air).
+                        </p>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 mb-4">
+                        <h3 class="text-xl font-bold text-sky-800 mb-2">🔥 2. Enam Perubahan Wujud Benda</h3>
+                        <ul class="list-disc list-inside text-sm text-sky-900 space-y-1.5">
+                            <li><strong>Mencair (Menyerap Kalor):</strong> Padat ➔ Cair (Contoh: Es batu meleleh, mentega dipanaskan).</li>
+                            <li><strong>Membeku (Melepas Kalor):</strong> Cair ➔ Padat (Contoh: Air jadi es batu, agar-agar mengeras).</li>
+                            <li><strong>Menguap (Menyerap Kalor):</strong> Cair ➔ Gas (Contoh: Air mendidih jadi uap, baju basah dijemur).</li>
+                            <li><strong>Mengembun (Melepas Kalor):</strong> Gas ➔ Cair (Contoh: Titik air di luar gelas es, embun pagi).</li>
+                            <li><strong>Menyublim (Menyerap Kalor):</strong> Padat ➔ Gas (Contoh: Kapur barus di lemari mengecil/habis).</li>
+                            <li><strong>Mengkristal / Deposisi (Melepas Kalor):</strong> Gas ➔ Padat (Contoh: Pembentukan kristal salju, jelaga asap).</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                        <h3 class="text-xl font-bold text-amber-800 mb-2">💡 3. Konsep Kalor & Sifat Fisika</h3>
+                        <p class="text-sm text-amber-900 leading-relaxed">
+                            • <strong>Menerima Kalor (Dipanaskan):</strong> Mencair, Menguap, Menyublim.<br>
+                            • <strong>Melepas Kalor (Didinginkan):</strong> Membeku, Mengembun, Mengkristal.<br>
+                            • <strong>Kapilaritas:</strong> Peristiwa meresapnya zat cair melalui celah-celah kecil (Contoh: Minyak pada sumbu kompor).
+                        </p>
+                    </div>
+                `;
+            } else if (tabKey === 'ing') {
+                contentBox.innerHTML = `
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 mb-4">
+                        <h3 class="text-xl font-bold text-indigo-800 mb-2">⏳ 1. Simple Past Tense (Waktu Lampau)</h3>
+                        <p class="text-sm text-indigo-900 leading-relaxed mb-2">
+                            Digunakan untuk menceritakan kejadian yang sudah terjadi di masa lalu.<br>
+                            • <strong>Kata Keterangan Waktu:</strong> <em>Yesterday</em> (kemarin), <em>Last week/month/year</em> (lalu), <em>... ago</em> (yang lalu), <em>This morning</em> (pagi tadi).<br>
+                            • <strong>Verb 2 (Regular):</strong> Ditambah -ed ➔ <em>Play ➔ Played</em>, <em>Watch ➔ Watched</em>, <em>Study ➔ Studied</em>.<br>
+                            • <strong>Verb 2 (Irregular):</strong> Berubah bentuk ➔ <em>Go ➔ Went</em>, <em>Buy ➔ Bought</em>, <em>Eat ➔ Ate</em>, <em>See ➔ Saw</em>, <em>Write ➔ Wrote</em>.<br>
+                            • <strong>To Be Past Tense:</strong> <strong>I / He / She / It ➔ WAS</strong> | <strong>You / We / They ➔ WERE</strong>.
+                        </p>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200">
+                        <h3 class="text-xl font-bold text-sky-800 mb-2">📖 2. Short Comprehensions (Membaca Teks Pendek)</h3>
+                        <p class="text-sm text-sky-900 leading-relaxed">
+                            Tips menjawab soal teks pendek:<br>
+                            • <strong>What:</strong> Menanyakan benda/aktivitas (Apa).<br>
+                            • <strong>Who:</strong> Menanyakan orang/tokoh (Siapa).<br>
+                            • <strong>Where:</strong> Menanyakan tempat/lokasi (Di mana).<br>
+                            • <strong>When:</strong> Menanyakan waktu kejadian (Kapan).<br>
+                            • <strong>Why:</strong> Menanyakan alasan/sebab (Mengapa).
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        // QUIZ SELECTION AND GAME LOGIC
+        function selectSubject(subjectKey) {
+            currentSubject = subjectKey;
+            
+            // Set Badge UI
+            const subjectTag = document.getElementById('quiz-subject-tag');
+            if (subjectKey === 'IPA') {
+                subjectTag.innerText = "Sains (IPA)";
+                subjectTag.className = "px-3 py-1 bg-emerald-500 text-white rounded-xl text-xs font-bold uppercase";
+            } else if (subjectKey === 'MTK') {
+                subjectTag.innerText = "Matematika";
+                subjectTag.className = "px-3 py-1 bg-amber-500 text-white rounded-xl text-xs font-bold uppercase";
+            } else {
+                subjectTag.innerText = "Bahasa Inggris";
+                subjectTag.className = "px-3 py-1 bg-sky-500 text-white rounded-xl text-xs font-bold uppercase";
+            }
+
+            // Shuffle questions and select all 50
+            const rawQuestions = [...bankSoal[subjectKey]];
+            // Shuffle question order
+            for (let i = rawQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [rawQuestions[i], rawQuestions[j]] = [rawQuestions[j], rawQuestions[i]];
+            }
+
+            // Shuffle options for each question so answers aren't always 'A'
+            currentQuestions = rawQuestions.map(q => shuffleOptions(q));
+
+            // Reset game counters
+            currentQuestionIndex = 0;
+            score = 0;
+            lives = 3;
+            userAnswersHistory = [];
+
+            showScreen('screen-quiz');
+            loadQuestion();
+        }
+
+        function renderLives() {
+            const container = document.getElementById('quiz-lives-container');
+            container.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                if (i < lives) {
+                    container.innerHTML += `<i class="fa-solid fa-heart text-red-500 text-lg heart-pop"></i>`;
+                } else {
+                    container.innerHTML += `<i class="fa-regular fa-heart text-slate-300 text-lg"></i>`;
+                }
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length || lives <= 0) {
+                endQuiz();
+                return;
+            }
+
+            // Reset explanation box
+            document.getElementById('quiz-explanation-box').classList.add('hidden');
+            
+            // Render Lives & Progress
+            renderLives();
+            const totalQ = currentQuestions.length;
+            document.getElementById('quiz-current-num').innerText = currentQuestionIndex + 1;
+            document.getElementById('quiz-total-num').innerText = totalQ;
+            const progressPercent = ((currentQuestionIndex + 1) / totalQ) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+
+            // Render Current Question
+            const currentQ = currentQuestions[currentQuestionIndex];
+            document.getElementById('quiz-question-text').innerText = `${currentQuestionIndex + 1}. ${currentQ.q}`;
+
+            // Render Options
+            const optionsGrid = document.getElementById('quiz-options-grid');
+            optionsGrid.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+
+            currentQ.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full p-4 rounded-2xl border-2 border-slate-200 bg-white hover:bg-sky-50 hover:border-sky-300 text-left font-semibold text-slate-700 flex items-center space-x-3 transition-all btn-bounce shadow-sm`;
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-extrabold text-sky-600 border border-slate-200 text-sm flex-shrink-0">${labels[idx]}</span>
+                    <span class="text-sm md:text-base leading-snug">${opt}</span>
+                `;
+                btn.onclick = () => checkAnswer(idx);
+                optionsGrid.appendChild(btn);
+            });
+
+            // Start Timer
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 30;
+            document.getElementById('quiz-timer').innerText = `${timeLeft}s`;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('quiz-timer').innerText = `${timeLeft}s`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    // Time out counts as wrong answer
+                    handleTimeout();
+                }
+            }, 1000);
+        }
+
+        function handleTimeout() {
+            disableOptionButtons();
+            const currentQ = currentQuestions[currentQuestionIndex];
+            lives--;
+            renderLives();
+
+            userAnswersHistory.push({
+                question: currentQ.q,
+                userAnswer: "Waktu Habis",
+                correctAnswer: currentQ.options[currentQ.correct],
+                isCorrect: false,
+                explanation: currentQ.exp
+            });
+
+            showExplanation(false, "Waktu Habis!", currentQ.exp);
+        }
+
+        function disableOptionButtons() {
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('btn-bounce');
+            });
+        }
+
+        function checkAnswer(selectedIndex) {
+            clearInterval(timer);
+            disableOptionButtons();
+
+            const currentQ = currentQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === currentQ.correct;
+            const optionsGrid = document.getElementById('quiz-options-grid');
+            const btns = optionsGrid.children;
+
+            if (isCorrect) {
+                score += 2; // 2 points x 50 = 100 total max
+                btns[selectedIndex].className = "w-full p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left font-bold text-emerald-800 flex items-center space-x-3 shadow-md";
+                
+                // Confetti mini effect
+                confetti({
+                    particleCount: 25,
+                    spread: 50,
+                    origin: { y: 0.7 }
+                });
+
+                userAnswersHistory.push({
+                    question: currentQ.q,
+                    userAnswer: currentQ.options[selectedIndex],
+                    correctAnswer: currentQ.options[currentQ.correct],
+                    isCorrect: true,
+                    explanation: currentQ.exp
+                });
+
+                showExplanation(true, "Jawaban Kamu Benar! 🎉", currentQ.exp);
+            } else {
+                lives--;
+                renderLives();
+
+                btns[selectedIndex].className = "w-full p-4 rounded-2xl border-2 border-red-500 bg-red-50 text-left font-bold text-red-800 flex items-center space-x-3 shadow-md";
+                btns[currentQ.correct].className = "w-full p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left font-bold text-emerald-800 flex items-center space-x-3 shadow-md";
+
+                userAnswersHistory.push({
+                    question: currentQ.q,
+                    userAnswer: currentQ.options[selectedIndex],
+                    correctAnswer: currentQ.options[currentQ.correct],
+                    isCorrect: false,
+                    explanation: currentQ.exp
+                });
+
+                showExplanation(false, "Jawaban Belum Tepat!", currentQ.exp);
+            }
+        }
+
+        function showExplanation(isCorrect, title, expText) {
+            const box = document.getElementById('quiz-explanation-box');
+            const icon = document.getElementById('explanation-icon');
+            const titleElem = document.getElementById('explanation-title');
+            const textElem = document.getElementById('explanation-text');
+
+            if (isCorrect) {
+                box.className = "p-4 rounded-2xl mb-4 text-left shadow-md border-2 bg-emerald-50 border-emerald-300 text-emerald-900";
+                icon.innerText = "✨";
+                titleElem.innerText = title;
+            } else {
+                box.className = "p-4 rounded-2xl mb-4 text-left shadow-md border-2 bg-red-50 border-red-300 text-red-900";
+                icon.innerText = "💡";
+                titleElem.innerText = title;
+            }
+
+            textElem.innerText = expText;
+            box.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function endQuiz() {
+            clearInterval(timer);
+            showScreen('screen-result');
+
+            const totalQ = userAnswersHistory.length;
+            const correctCount = userAnswersHistory.filter(h => h.isCorrect).length;
+            const wrongCount = totalQ - correctCount;
+
+            document.getElementById('res-score').innerText = score;
+            document.getElementById('res-correct').innerText = correctCount;
+            document.getElementById('res-wrong').innerText = wrongCount;
+
+            const feedbackElem = document.getElementById('res-feedback-msg');
+
+            // 3 DIFFERENT HEARTFELT 10TH BIRTHDAY MESSAGES FOR ADIBAH GILDA THASANY
+            let bdayMsg = "";
+
+            if (currentSubject === 'IPA') {
+                bdayMsg = `
+                    <div class="mt-4 p-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl shadow-lg border-2 border-white text-left">
+                        <div class="flex items-center space-x-2 font-extrabold text-lg mb-2">
+                            <span>🎂</span>
+                            <span>Selamat Ulang Tahun ke-10, Adibah Gilda Thasany! 🌿</span>
+                        </div>
+                        <p class="text-xs md:text-sm font-medium leading-relaxed text-emerald-50">
+                            Selamat ya nak, Adibah sudah hebat sekali menyelesaikan 50 soal Sains ini! Di usiamu yang ke-10 ini, tumbuhlah menjadi anak yang semakin dewasa, makin pintar, dan bisa menjadi contoh teladan yang baik untuk adik nanti. Selalu bisa menjaga diri dengan baik, dan sayangilah keluarga melebihi siapapun. Semoga lomba nanti menjadi kado istimewa dan Adibah sukses jadi Juara! 🏆✨
+                        </p>
+                    </div>
+                `;
+            } else if (currentSubject === 'MTK') {
+                bdayMsg = `
+                    <div class="mt-4 p-4 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white rounded-2xl shadow-lg border-2 border-white text-left">
+                        <div class="flex items-center space-x-2 font-extrabold text-lg mb-2">
+                            <span>🎈</span>
+                            <span>Selamat Ulang Tahun yang ke-10, Kakak Adibah Gilda Thasany! 📐</span>
+                        </div>
+                        <p class="text-xs md:text-sm font-medium leading-relaxed text-amber-50">
+                            Selamat ya nak, Adibah sudah hebat sekali menuntaskan 50 soal Matematika ini... Tumbuhlah menjadi anak yang makin dewasa, penuh kelembutan dan kebijaksanaan. Kelak Adibah akan menjadi pelindung serta pembimbing tercinta bagi adik. Jadilah pribadi yang makin pandai menjaga diri dan senantiasa menyanyangi keluarga di atas segalanya. Kado Juara lomba siap menantimu! 🎁⭐
+                        </p>
+                    </div>
+                `;
+            } else {
+                // BAHASA INGGRIS
+                bdayMsg = `
+                    <div class="mt-4 p-4 bg-gradient-to-r from-sky-500 via-blue-600 to-purple-600 text-white rounded-2xl shadow-lg border-2 border-white text-left">
+                        <div class="flex items-center space-x-2 font-extrabold text-lg mb-2">
+                            <span>👑</span>
+                            <span>Happy 10th Birthday, Dearest Adibah Gilda Thasany! 🇬🇧</span>
+                        </div>
+                        <p class="text-xs md:text-sm font-medium leading-relaxed text-sky-50">
+                            You did an amazing job finishing 50 English questions! Selamat ulang tahun ke-10 ya Adibah sayang. Semoga di usia baru ini Adibah tumbuh semakin mandiri, makin dewasa, bisa menjadi contoh yang hebat bagi adik tercinta, serta selalu menjaga diri dan mencintai keluarga dengan sepenuh hati. Semoga piala Juara Lomba menjadi hadiah ulang tahun terindah! 🏆💖
+                        </p>
+                    </div>
+                `;
+            }
+
+            feedbackElem.innerHTML = bdayMsg;
+
+            // Trigger grand celebration confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // EVALUASI & REVIEW MODAL LOGIC
+        function showReviewModal() {
+            const container = document.getElementById('review-list-container');
+            container.innerHTML = '';
+
+            if (userAnswersHistory.length === 0) {
+                container.innerHTML = `<p class="text-slate-500 text-center font-bold">Belum ada riwayat soal yang dikerjakan.</p>`;
+            } else {
+                userAnswersHistory.forEach((item, idx) => {
+                    const statusClass = item.isCorrect ? 'bg-emerald-50 border-emerald-300' : 'bg-red-50 border-red-300';
+                    const badge = item.isCorrect ? '<span class="px-2 py-0.5 bg-emerald-500 text-white text-xs font-bold rounded-md">BENAR</span>' : '<span class="px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded-md">SALAH</span>';
+
+                    container.innerHTML += `
+                        <div class="p-4 rounded-2xl border ${statusClass} text-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-800 max-w-[80%]">${idx + 1}. ${item.question}</h4>
+                                ${badge}
+                            </div>
+                            <div class="space-y-1 text-xs md:text-sm mb-2">
+                                <p class="text-slate-700"><strong>Jawaban Adibah:</strong> <span class="${item.isCorrect ? 'text-emerald-700 font-bold' : 'text-red-600 font-bold'}">${item.userAnswer}</span></p>
+                                ${!item.isCorrect ? `<p class="text-emerald-700 font-bold"><strong>Kunci Jawaban Benar:</strong> ${item.correctAnswer}</p>` : ''}
+                            </div>
+                            <div class="bg-white/80 p-2.5 rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed">
+                                <strong>💡 Pembahasan:</strong> ${item.explanation}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('modal-review').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('modal-review').classList.add('hidden');
+        }
+
+        // MINI GAME TEBAK GAMBAR LOGIC
+        function loadTebakGambarQuestion() {
+            const data = tebakGambarData[currentTebakIndex];
+            document.getElementById('tebak-emoji-display').innerText = data.emoji;
+            document.getElementById('tebak-clue').innerText = data.clue;
+
+            const grid = document.getElementById('tebak-options-grid');
+            grid.innerHTML = '';
+
+            data.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full py-3 px-4 bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 text-purple-900 font-bold rounded-2xl btn-bounce transition-all text-sm md:text-base";
+                btn.innerText = opt;
+                btn.onclick = () => checkTebakAnswer(idx);
+                grid.appendChild(btn);
+            });
+        }
+
+        function checkTebakAnswer(idx) {
+            const data = tebakGambarData[currentTebakIndex];
+            if (idx === data.correct) {
+                confetti({ particleCount: 40, spread: 60, origin: { y: 0.6 } });
+                alert("Hore! Tebakan Adibah Benar sekali! 🎉");
+            } else {
+                alert("Waduh, belum tepat nih. Coba tebak lagi yuk!");
+            }
+        }
+
+        function loadNextTebakGambar() {
+            currentTebakIndex = (currentTebakIndex + 1) % tebakGambarData.length;
+            loadTebakGambarQuestion();
+        }
+
+        // INITIALIZATION ON WINDOW LOAD
+        window.onload = function() {
+            generateAllQuestions();
+            showScreen('screen-welcome');
+            
+            // Birthday opening confetti celebration
+            setTimeout(() => {
+                confetti({
+                    particleCount: 70,
+                    spread: 80,
+                    origin: { y: 0.5 }
+                });
+            }, 600);
+        };
+    </script>
+</body>
+</html>
